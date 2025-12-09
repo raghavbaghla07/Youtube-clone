@@ -1,19 +1,37 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { toggleMenu } from '../utils/AppSlice';
 
 const Header = () => {
+
+    // 1. I will dispatch an action
+    // 2. this dispatch come from useDispatch
+    // 3. useDispatch is a hook that we get from react-redux library
+    const dispatch = useDispatch();
+
+    const toggleMenuHandler = () => {
+        dispatch(toggleMenu());
+        // toggle menu does not have any payload, it just needs our state information
+    }
+
     return (
         <div className=' grid grid-flow-col p-2 m-2 shadow-lg'>
             <div className='flex items-center col-span-1'>
                 <img
-                    className='h-8 mx-2'
+                    onClick={() => toggleMenuHandler()}
+                    className='h-8 mx-2 cursor-pointer'
                     alt="logo"
                     src="https://icons.veryicon.com/png/o/miscellaneous/linear-icon-45/hamburger-menu-5.png"
                 />
-                <img
-                    className='h-12'
-                    alt="Youtube icon"
-                    src='https://logos-world.net/wp-content/uploads/2020/06/YouTube-Logo.png'
-                />
+
+                {/* giving it a tag bcz we do not have react router link */}
+                < a href='/' >
+                    <img
+                        className='h-12'
+                        alt="Youtube icon"
+                        src='https://logos-world.net/wp-content/uploads/2020/06/YouTube-Logo.png'
+                    />
+                </a >
             </div>
             <div className=' flex justify-center items-center col-span-10 '>
                 <input
